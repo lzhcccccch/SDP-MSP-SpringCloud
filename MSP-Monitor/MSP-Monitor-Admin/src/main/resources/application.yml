@@ -1,0 +1,9 @@
+
+spring:
+  application:
+    name: Spring-Cloud-Admin-Server
+  profiles:
+    active: dev
+
+#server:
+#  port: 8010
