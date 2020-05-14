@@ -1,0 +1,18 @@
+#spring-cloud-config-server-git-uri: http://11.11.160.200:10008/EDW/SDP/Config/Dev.git
+#spring-cloud-config-server-git-username: moyin
+#spring-cloud-config-server-git-password: moyin330x1
+spring-cloud-config-server-git-uri: https://github.com/Liuuzhichao/SpringCloudConfigFile.git
+spring-cloud-config-server-git-username: Liuuzhichao
+spring-cloud-config-server-git-password: Liuzhichao000!@
+
+spring:
+  # 配置中心
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${spring-cloud-config-server-git-uri} # 配置git仓库的地址
+          search-paths:                           # git仓库地址下的相对地址,可以配置多个,用,分割
+          username: ${spring-cloud-config-server-git-username} # git仓库的账号
+          password: ${spring-cloud-config-server-git-password}                                           # git仓库的密码
+          timeout: 100
