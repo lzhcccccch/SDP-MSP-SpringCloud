@@ -1,0 +1,86 @@
+
+eureka-client-service-url-defaultZone: http://localhost:8761/eureka/
+spring-boot-admin-url: http://localhost:8010
+
+eureka:
+  instance:
+    # 此实例注册到Eureka中的唯一实例id. IP:服务名:端口:版本(project.version引用的maven的版本)
+    # 该属性配置只能在application.yml/properties中,不能在bootstrap中进行配置  版本问题:ipAddress-->ip-address
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+    # 与此实例相关联的主机名，是其他实例可以用来进行请求的准确名称
+    hostname: ${spring.cloud.client.ip-address}
+    # 注册服务时是否以IP注册,默认false
+    prefer-ip-address: true
+    # 服务续约任务调用时间间隔,即每隔多久client需要向EurekaServer发送心跳证明自己还活着(心跳机制),默认30秒
+    lease-renewal-interval-in-seconds: 30
+    # 服务失效时间,即Eureka服务器在收到最后一次心跳信号之后,多长时间内没有再次接收到client发送的心跳信号,会将该节点剔除
+    lease-expiration-duration-in-seconds: 90
+    # 获取此实例的相对健康检查URL路径,默认为/health
+    # HealthCheckUrl:获取此实例的绝对健康检查URL路径,默认为null; SecureHealthCheckUrl:获取此实例的绝对安全健康检查网页的URL路径,默认为null
+    health-check-url-path: /health
+  server:
+    # 设置清理无效节点的时间间隔
+    eviction-interval-timer-in-ms: 60000
+    # 自我保护模式,当出现网络分区或者Eureka在短时间内丢失过多客户端连接,会进入自我保护模式.即一个服务长时间没有发送心跳,eureka也不会将其删除,默认为true
+    enable-self-preservation: false
+    # 阈值因子,默认是0.85,如果阈值比最小值大,则自我保护模式开启. enable-self-preservation为true时启用
+    #    renewal-percent-threshold: 0.85
+    # 阈值更新的时间间隔, 单位为毫秒, 默认为15 * 60 * 1000
+    renewal-threshold-update-interval-ms: 800000
+    # 集群之间相互更新节点信息的时间频率, 单位为毫秒, 默认为10 * 60 * 1000
+    peer-eureka-nodes-update-interval-ms: 600000
+    # 集群服务器节点的状态信息被更新的时间间隔, 单位为毫秒, 默认为30 * 1000
+    peer-eureka-status-refresh-time-interval-ms: 30000
+    # 在Eureka服务器获取不到集群里对等服务器上的实例时, 需要等待的时间(分钟)
+    wait-time-in-ms-when-sync-empty: 3
+    # 连接对等节点服务器复制的超时的时间, 单位为毫秒, 默认为200
+    peer-node-connect-timeout-ms: 200
+    # 读取对等节点服务器复制的超时的时间, 单位为毫秒, 默认为200
+    peer-node-read-timeout-ms: 200
+    # 获取对等节点上(集群中)http连接的总数,默认为1000
+    peer-node-total-connections: 100
+    # 节点(Eureka服务器)启动时尝试去获取集群里其他服务器上的注册信息的次数, 默认5
+    registry-sync-retries: 5
+  client:
+    # 是否启用客户端
+    enabled: true
+    # 是否在Eureka服务器中注册自己的信息以供其他服务发现,默认true.单机时用false
+    register-with-eureka: false
+    # 此客户端是否获取eureka服务器注册表上的注册信息, 默认为true.单机服务端时用false
+    fetch-registry: false
+    # 连接server服务器超时时间, 默认5s
+    eureka-server-connect-timeout-seconds: 5
+    # 连接server的连接空闲时长, 默认30s
+    eureka-connection-idle-timeout-seconds: 30
+    # 连接server服务器读取数据超时时间, 默认8s
+    eureka-server-read-timeout-seconds: 8
+    # 连接server的最大连接数, 默认200
+    eureka-server-total-connections: 200
+    # 对单个server的最大连接数, 默认50
+    eureka-server-total-connections-per-host: 50
+    # 客户端从Eureka Server集群里更新Eureka Server信息的频率, 默认300s
+    eureka-service-url-poll-interval-seconds: 300
+    # 从eureka服务器注册表中获取注册信息的时间间隔(s), 默认为30s
+    registry-fetch-interval-seconds: 30
+    # client维持与Eureka Server的心跳线程数
+    heartbeat-executor-thread-pool-size: 5
+    # 设置eureka服务器所在的地址, 查询服务和注册服务都需要依赖这个地址. 多个用,隔开
+    service-url:
+      defalutZone : ${eureka-client-service-url-defaultZone}
+      # 默认服务注册中心地址,可以同时向多个服务注册服务
+      # defaultZone: http://192.168.21.3:10761/eureka/,http://192.168.21.4:10761/eureka/
+
+spring:
+  boot:
+    #设置admin-server的地址
+    admin:
+      url: ${spring-boot-admin-url}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

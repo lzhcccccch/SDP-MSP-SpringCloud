@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: Spring-Cloud-Eureka-Server
+
+server:
+  port: 8761
