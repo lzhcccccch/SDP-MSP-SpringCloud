@@ -16,7 +16,7 @@
 
     <properties>
         <version.spring.boot.admin>2.2.0</version.spring.boot.admin>
-        <version.spring.boot.starter>2.2.0.RELEASE</version.spring.boot.starter>
+        <version.spring.boot.starter>2.5.12</version.spring.boot.starter>
     </properties>
 
     <dependencies>
