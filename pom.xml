@@ -21,6 +21,7 @@
         <module>MSP-Config</module>
         <module>MSP-Dependencies</module>
         <module>MSP-Monitor</module>
+        <module>MSP-Cloud-Practice</module>
     </modules>
 
     <build>
