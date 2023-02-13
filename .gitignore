@@ -1,5 +1,5 @@
 # Default ignored files
-/shelf/
+/.idea/shelf/
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
@@ -8,7 +8,7 @@
 /dataSources.local.xml
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
