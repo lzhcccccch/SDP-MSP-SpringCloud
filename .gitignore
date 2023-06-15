@@ -12,3 +12,6 @@
 *.iws
 *.iml
 *.ipr
+
+target/
+.fastRequest/

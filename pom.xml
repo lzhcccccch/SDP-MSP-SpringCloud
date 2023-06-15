@@ -4,17 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.0.RELEASE</version>
-    </parent>
-
     <groupId>com.bcp.sdp.msp</groupId>
     <artifactId>SDP-MSP-SpringCloud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
 
     <modules>
         <module>MSP-Eureka</module>
@@ -24,13 +17,31 @@
         <module>MSP-Cloud-Practice</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-    
+    <!-- 指定JDK版本 解决报错: Java：不支持发行版本5 的解决方案 -->
+    <properties>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.bcp.sdp.msp</groupId>
+                <artifactId>MSP-Dependencies</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>aliyunmaven</id>-->
+<!--            <name>aliyun</name>-->
+<!--            <url>https://maven.aliyun.com/repository/public</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
 </project>

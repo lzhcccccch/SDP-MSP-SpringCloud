@@ -2,11 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.bcp.sdp.msp</groupId>
-        <artifactId>SDP-MSP-SpringCloud</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.bcp.sdp.msp</groupId>
@@ -14,106 +9,34 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <properties>
-        <version.spring.boot.admin>2.2.0</version.spring.boot.admin>
-        <version.spring.boot.starter>2.2.0.RELEASE</version.spring.boot.starter>
-    </properties>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
-
-    </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <!-- SpringCloud的版本控制,最好使用,否则容易导致各种内嵌的依赖版本不一致导致无法启动项目 -->
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.RELEASE</version>
+                <version>2022.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${version.spring.boot.starter}</version>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-                <version>${version.spring.boot.starter}</version>
-            </dependency>
-
-            <!-- actuator是监控系统健康情况的工具 -->
-            <!-- 配置中心:配置没办法刷新,加上它可以手动刷新配置? -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${version.spring.boot.starter}</version>
-            </dependency>
-
-            <!-- 注册中心客户端 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-                <version>${version.spring.boot.starter}</version>
-            </dependency>
-
+            <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-dependencies -->
             <dependency>
                 <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-server</artifactId>
-                <version>${version.spring.boot.admin}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-server-ui</artifactId>
-                <version>${version.spring.boot.admin}</version>
-            </dependency>
-
-            <!-- Spring Boot Admin用于监控基于Spring Boot的应用,它是在Spring Boot Actuator的基础上提供简洁的可视化WEB UI -->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${version.spring.boot.admin}</version>
-            </dependency>
-
-            <!-- 配置中心客户端 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-config</artifactId>
-                <version>${version.spring.boot.starter}</version>
-            </dependency>
-
-            <!-- 权限, 需要登录 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-                <version>${version.spring.boot.starter}</version>
-            </dependency>
-
-            <!-- 邮件 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-mail</artifactId>
-                <version>${version.spring.boot.starter}</version>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>3.0.4</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
         </dependencies>

@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @packageName： com.bcp.sdp.msp.eureka
  * @className: EurekaApplication
- * @description: TODO
  * @version: v1.0
  * @author: liuzhichao
  * @date: 2020-04-20 14:48
