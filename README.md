@@ -22,3 +22,11 @@
 3. 整理eureka服务
 
    以该服务为准，正常启动。配置负载均衡，Ribbon停止更新，springcloud中重新实现了loadbalancer。
+
+
+##### 20240305:
+1. 整理项目的pom依赖问题
+   通用依赖统一使用最外层pom（SDP-MSP-SpringCloud）管理, 取消依赖服务（MSP-Dependencies）
+2. 依赖升级
+   使用最新版本的springcloud依赖(2023)，使用 JDK21
+3. 将 eureka/config 和 admin 进行整理
