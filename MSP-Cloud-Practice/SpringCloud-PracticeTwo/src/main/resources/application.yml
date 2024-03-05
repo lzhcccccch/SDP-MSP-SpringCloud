@@ -1,0 +1,13 @@
+server:
+  port: 8002
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: Spring-Cloud-Practice2
+  profiles:
+    active: dev

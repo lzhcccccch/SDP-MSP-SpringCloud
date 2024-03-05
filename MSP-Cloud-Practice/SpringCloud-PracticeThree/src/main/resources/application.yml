@@ -1,0 +1,13 @@
+server:
+  port: 8003
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: Spring-Cloud-Practice3
+  profiles:
+    active: dev

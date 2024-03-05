@@ -1,0 +1,39 @@
+
+eureka-client-service-url-defaultZone: http://localhost:8761/eureka/
+spring-boot-admin-url: http://localhost:8010
+spring-cloud-config-server-url: http://localhost:8888
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${eureka-client-service-url-defaultZone}
+
+spring:
+  cloud:
+    config:
+      name: ${spring.application.name}
+      uri: ${spring-cloud-config-server-url}
+      profile: ${spring.profiles.active}
+      fail-fast: true
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: ${spring-boot-admin-url}
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 默认只公开了/health和/info端点,要想暴露所有端点只需设置成星号即可
+  endpoint:
+    health:
+      show-details: ALWAYS
+  info:
+    git:
+      mode: full
