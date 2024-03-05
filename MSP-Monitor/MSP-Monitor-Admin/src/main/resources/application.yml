@@ -1,9 +1,38 @@
 
+server:
+  port: 8010
+
 spring:
   application:
     name: Spring-Cloud-Admin-Server
-  profiles:
-    active: dev
+  boot:
+    admin:
+      notify:
+        mail:
+          # 当已注册的客户端的状态从 UP 变为 OFFLINE 或其他状态, 服务端就会自动将电子邮件发送到xxx@163.com
+          to: root@163.com
+          # 此处需与mail中配置的一致,即使相同也要配置,否则报错:553 Mail from must equal authorized user
+          from: root@163.com
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+  mail:
+    host: smtp.163.com
+    username: root@163.com
+    password: root0!@
 
-#server:
-#  port: 8010
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 默认只公开了/health和/info端点,要想暴露所有端点只需设置成星号即可
+  #  server:
+  #    port: 8999       # 默认查看地址http://localhost:端口/actuator,端口不进行设置则默认为服务的端口
+  endpoint:
+    health:
+      show-details: ALWAYS
+  info:
+    git:
+      mode: full
