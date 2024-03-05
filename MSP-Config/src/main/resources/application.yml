@@ -1,11 +1,8 @@
+server:
+  port: 8888
+
 spring:
   application:
     name: Spring-Cloud-Config-Server
   profiles:
-    active: dev
-
-server:
-  port: 8888
-  tomcat:
-    max-threads: 500 # Maximum amount of worker threads.
-    min-spare-threads: 50 # Minimum amount of worker threads
+    active: native
