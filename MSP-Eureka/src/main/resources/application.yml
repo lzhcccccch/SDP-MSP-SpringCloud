@@ -1,3 +1,5 @@
+server:
+  port: 8761
 
 spring:
   application:
@@ -5,6 +7,3 @@ spring:
   cloud:
     loadbalancer:
       enabled: true
-
-server:
-  port: 8761

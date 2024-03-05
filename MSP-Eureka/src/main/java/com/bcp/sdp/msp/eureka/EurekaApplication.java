@@ -7,15 +7,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @packageName： com.bcp.sdp.msp.eureka
- * @className: EurekaApplication
- * @version: v1.0
- * @author: liuzhichao
- * @date: 2020-04-20 14:48
- */
-@SpringBootApplication
 @EnableEurekaServer
+@SpringBootApplication
 public class EurekaApplication {
 
     public static void main(String[] args) {
@@ -24,11 +17,8 @@ public class EurekaApplication {
     }
 
     /**
-     * @description: 使用 HTTP 方式进行服务间通信时,实现客户端的负载均衡
-     * @param: []
-     * @return: org.springframework.web.client.RestTemplate
-     * @author: liuzhichao 2021-05-07 14:04
-     */       
+     * 使用 HTTP 方式进行服务间通信时,实现客户端的负载均衡
+     */
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
