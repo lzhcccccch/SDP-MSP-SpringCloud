@@ -12,36 +12,135 @@
     <modules>
         <module>MSP-Eureka</module>
         <module>MSP-Config</module>
-        <module>MSP-Dependencies</module>
         <module>MSP-Monitor</module>
         <module>MSP-Cloud-Practice</module>
+        <module>MSP-ApolloConfig</module>
+        <module>MSP-Nacos</module>
     </modules>
 
-    <!-- 指定JDK版本 解决报错: Java：不支持发行版本5 的解决方案 -->
     <properties>
-        <maven.compiler.source>20</maven.compiler.source>
-        <maven.compiler.target>20</maven.compiler.target>
+        <!-- 指定JDK版本 解决报错: Java：不支持发行版本5 的解决方案 -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-boot-dependencies.version>3.2.3</spring-boot-dependencies.version>
+        <spring-boot-admin-dependencies.version>3.2.2</spring-boot-admin-dependencies.version>
+        <version-lombok>1.18.30</version-lombok>
+        <version-snakeyaml>2.0</version-snakeyaml>
+        <version-fastjson2>2.0.42</version-fastjson2>
+        <version-hutool>5.8.25</version-hutool>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version-lombok}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${version-fastjson2}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${version-hutool}</version>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <!-- SpringCloud的版本控制,最好使用,否则容易导致各种内嵌的依赖版本不一致导致无法启动项目 -->
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
             <dependency>
-                <groupId>com.bcp.sdp.msp</groupId>
-                <artifactId>MSP-Dependencies</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-dependencies -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${version-lombok}</version>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+            <!-- yaml 解析框架 springboot中依赖1.33有安全漏洞 所以提升版本-->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${version-snakeyaml}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${version-fastjson2}</version>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${version-hutool}</version>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>aliyunmaven</id>-->
-<!--            <name>aliyun</name>-->
-<!--            <url>https://maven.aliyun.com/repository/public</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
+    <!--    <repositories>-->
+    <!--        <repository>-->
+    <!--            <id>aliyunmaven</id>-->
+    <!--            <name>aliyun</name>-->
+    <!--            <url>https://maven.aliyun.com/repository/public</url>-->
+    <!--        </repository>-->
+    <!--    </repositories>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
