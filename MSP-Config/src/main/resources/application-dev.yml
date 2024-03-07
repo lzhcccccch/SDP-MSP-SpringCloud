@@ -1,9 +1,6 @@
-#spring-cloud-config-server-git-uri: http://11.11.160.200:10008/EDW/SDP/Config/Dev.git
-#spring-cloud-config-server-git-username: moyin
-#spring-cloud-config-server-git-password: moyin330x1
-spring-cloud-config-server-git-uri: https://github.com/Liuuzhichao/SpringCloudConfigFile.git
-spring-cloud-config-server-git-username: Liuuzhichao
-spring-cloud-config-server-git-password: "********"
+spring-cloud-config-server-git-uri: https://github.com/lzhcccccch/SpringCloudConfigFile.git
+spring-cloud-config-server-git-username: root
+spring-cloud-config-server-git-password: root
 
 spring:
   # 配置中心
