@@ -8,3 +8,16 @@ spring:
       client:
         enabled: true
         url: ${spring-boot-admin-url}
+
+management:
+  server:
+    # 为了安全一般都启用独立的端口来访问后端的监控信息，默认与server.port相同
+    port: ${server.port}
+  endpoints:
+    web:
+      exposure:
+        # 开放所有的端点(访问 http://localhost:${management.server.port}/actuator 查看所有开放且暴露的端点, 支持用户自定义端点)
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

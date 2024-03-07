@@ -7,13 +7,23 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 @EnableEurekaServer
 @SpringBootApplication
 public class EurekaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EurekaApplication.class, args);
-        System.out.println("---------->start");
+        System.out.println("[----------start----------] Eureka 访问地址: http://localhost:8761");
+        // 打印 IP 地址和端口号
+        try {
+            String hostAddress = InetAddress.getLocalHost().getHostAddress();
+            System.out.println("http://" + hostAddress + ":8761");
+        } catch (UnknownHostException e) {
+            System.out.println("获取 IP 地址失败");
+        }
     }
 
     /**
@@ -23,12 +33,6 @@ public class EurekaApplication {
     @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
-    }
-
-    public void test() {
-        RestTemplate restTemplate = new RestTemplate();
-        int id = 1001;
-        restTemplate.delete("http://TEST/test/{1}", id);
     }
 
 }
