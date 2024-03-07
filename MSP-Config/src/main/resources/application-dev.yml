@@ -11,8 +11,12 @@ spring:
     config:
       server:
         git:
-          uri: ${spring-cloud-config-server-git-uri} # 配置git仓库的地址
-          search-paths:                           # git仓库地址下的相对地址,可以配置多个,用,分割
-          username: ${spring-cloud-config-server-git-username} # git仓库的账号
-          password: ${spring-cloud-config-server-git-password}                                           # git仓库的密码
+          # 配置git仓库的地址
+          uri: ${spring-cloud-config-server-git-uri}
+          # git仓库地址下的相对地址,可以配置多个,用,分割
+          search-paths:
+          # git仓库的账号
+          username: ${spring-cloud-config-server-git-username}
+          # git仓库的密码
+          password: ${spring-cloud-config-server-git-password}
           timeout: 100

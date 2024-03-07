@@ -1,48 +1,10 @@
 
-eureka-client-service-url-defaultZone: http://localhost:8761/eureka/
 spring-boot-admin-url: http://localhost:8010
 
-eureka:
-  instance:
-    # 此实例注册到Eureka中的唯一实例id. IP:服务名:端口:版本(project.version引用的maven的版本)
-    # 该属性配置只能在application.yml/properties中,不能在bootstrap中进行配置  版本问题:ipAddress-->ip-address
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-    # 与此实例相关联的主机名，是其他实例可以用来进行请求的准确名称
-    hostname: ${spring.cloud.client.ip-address}
-    # 注册服务时是否以IP注册,默认false
-    prefer-ip-address: true
-    # 服务续约任务调用时间间隔,即每隔多久client需要向EurekaServer发送心跳证明自己还活着(心跳机制),默认30秒
-    lease-renewal-interval-in-seconds: 30
-    # 服务失效时间,即Eureka服务器在收到最后一次心跳信号之后,多长时间内没有再次接收到client发送的心跳信号,会将该节点剔除
-    lease-expiration-duration-in-seconds: 90
-  client:
-    enable: true
-    service-url:
-      defaultZone: ${eureka-client-service-url-defaultZone}
-
 spring:
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
   boot:
     #设置admin-server的地址
     admin:
       client:
+        enabled: true
         url: ${spring-boot-admin-url}
-
-# 暴露监控端点
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'  # 默认只公开了/health和/info端点,要想暴露所有端点只需设置成星号即可
-#  server:
-#    port: 8999       # 默认查看地址http://localhost:端口/actuator,端口不进行设置则默认为服务的端口
-  endpoint:
-    health:
-      show-details: ALWAYS
-  info:
-    git:
-      mode: full
