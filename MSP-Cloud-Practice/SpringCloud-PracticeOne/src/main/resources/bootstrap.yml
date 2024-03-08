@@ -25,15 +25,9 @@ spring:
         enabled: true
         url: ${spring-boot-admin-url}
 
-# 暴露监控端点
 management:
   endpoints:
     web:
       exposure:
-        include: '*'  # 默认只公开了/health和/info端点,要想暴露所有端点只需设置成星号即可
-  endpoint:
-    health:
-      show-details: ALWAYS
-  info:
-    git:
-      mode: full
+        # 开放所有的端点(访问 http://localhost:${management.server.port}/actuator 查看所有开放且暴露的端点, 支持用户自定义端点)
+        include: '*'

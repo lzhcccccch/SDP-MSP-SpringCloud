@@ -20,6 +20,9 @@ spring:
       client:
         enabled: true
         url: ${spring-boot-admin-url}
+        instance:
+          metadata:
+            project.name: ${info.project.name}
 
 management:
   server:
@@ -30,6 +33,25 @@ management:
       exposure:
         # 开放所有的端点(访问 http://localhost:${management.server.port}/actuator 查看所有开放且暴露的端点, 支持用户自定义端点)
         include: '*'
+        # 本地测试禁用日志文件端点, 该配置项会导致 logging.file.path 配置失效, 在监控台看不到实时日志
+        exclude: logfile
+    enabled-by-default: true
+  # 对外开放某个监控点
   endpoint:
+    env:
+      # 展示敏感信息, 如果某些节点的信息展示为*, 则对相应节点进行该配置, 版本不同可能导致 key 不同
+      show-values: ALWAYS
     health:
       show-details: ALWAYS
+      enabled: true
+    # 其他
+    beans:
+      enabled: true
+
+logging:
+  file:
+    path: classpath:/logs/
+
+info:
+  project:
+    name: Spring Cloud Eureka Server
